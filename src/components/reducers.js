@@ -15,7 +15,8 @@ import {
       case FETCH_BOOKS_REQUEST:
         return { ...state, loading: true, error: null };
       case FETCH_BOOKS_SUCCESS:
-        return { ...state, books: action.payload, loading: false };
+        const sortedBooks = action.payload.sort((a, b) => a.title.localeCompare(b.title));
+        return { ...state, books: sortedBooks, loading: false };
       case FETCH_BOOKS_FAILURE:
         return { ...state, error: action.payload, loading: false };
       default:
